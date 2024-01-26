@@ -14,7 +14,16 @@ type User = {
   password: string;
 };
 
-function createOrUpdateUser(initialValues: Partial<User>) {
+const users: User[] = [
+  {
+    name: "Yar",
+    surname: "Pelykh",
+    email: "y.pelykh@gmail.com",
+    password: "qwerty",
+  },
+];
+
+function createOrUpdateUser(credentials: Partial<User>): User {
   const defaultUserCredentials: User = {
     name: "",
     surname: "",
@@ -22,14 +31,23 @@ function createOrUpdateUser(initialValues: Partial<User>) {
     password: "",
   };
 
-  // Оновлення користувача
-  return { ...defaultUserCredentials, ...initialValues };
+  const existedUser: User | undefined = users.find(
+    (user) => user.email === credentials.email
+  );
+
+  if (existedUser) {
+    return { ...existedUser, ...credentials };
+  }
+
+  return { ...defaultUserCredentials, ...credentials };
 }
 
 const newUserCredentials: Partial<User> = {
-  email: "user@mail.com",
+  email: "y.pelykh@gmail.com",
   password: "password123",
 };
-console.log(createOrUpdateUser(newUserCredentials));
+
+console.log("before update", users[0]);
+console.log("after update", createOrUpdateUser(newUserCredentials));
 
 export {};

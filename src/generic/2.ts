@@ -11,9 +11,9 @@ type AllType = {
   weight: number;
 };
 
-function combine(
-  top: Pick<AllType, "name" | "color">,
-  bottom: Pick<AllType, "position" | "weight">
+function combine<T extends AllType>(
+  top: Pick<T, "name" | "color">,
+  bottom: Pick<T, "position" | "weight">
 ): AllType {
   return {
     name: top.name,

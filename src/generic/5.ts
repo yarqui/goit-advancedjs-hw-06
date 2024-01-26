@@ -8,4 +8,17 @@ interface KeyValuePair<K, V> {
   value: V;
 }
 
+const userMaritalStatus: KeyValuePair<string, boolean> = {
+  key: "isMarried",
+  value: true,
+};
+
+const userAge: KeyValuePair<string, number> = {
+  key: "age",
+  value: 37,
+};
+
+console.log("userMaritalStatus:", userMaritalStatus);
+console.log("userAge:", userAge);
+
 export {};
